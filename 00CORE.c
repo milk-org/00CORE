@@ -87,7 +87,7 @@ extern DATA data;
 void __attribute__ ((constructor)) libinit_00CORE()
 {
 	init_00CORE();
-	printf(" ...... Loading module %s\n", __FILE__);
+//	printf(" ...... Loading module %s\n", __FILE__);
 }
 
 
@@ -215,11 +215,11 @@ int printWARNING(const char *file, const char *func, int line, char *warnmessage
  * @param[in]
  * warnmessage		CHAR*
  * 			error message to be printed
- * 
+ *  
  */ 
 int printERROR(const char *file, const char *func, int line, char *errmessage)
 {
-    fprintf(stderr,"%c[%d;%dm ERROR [ FILE: %s   FUNCTION: %s   LINE: %d ]  %c[%d;m\n", (char) 27, 1, 31, file, func, line, (char) 27, 0);
+    fprintf(stderr, "%c[%d;%dm ERROR [ %s:%d: %s ]  %c[%d;m\n", (char) 27, 1, 31, file, line, func, (char) 27, 0);
     if(C_ERRNO != 0)
     {
         char buff[256];
