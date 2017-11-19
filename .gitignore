@@ -4,4 +4,5 @@
 00CORE.o
 Makefile
 Makefile.in
+Makefile.bak
 lib00core.la
