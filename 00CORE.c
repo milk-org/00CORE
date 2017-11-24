@@ -96,7 +96,8 @@ void __attribute__ ((constructor)) libinit_00CORE()
 int init_00CORE()
 {
 	strcpy(data.module[data.NBmodule].name,__FILE__);
-    strcpy(data.module[data.NBmodule].info,"milk    - Core functions");
+	strcpy(data.module[data.NBmodule].package, "milk");
+    strcpy(data.module[data.NBmodule].info,"Core functions");
     data.NBmodule++;
 
 	
