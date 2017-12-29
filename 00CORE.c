@@ -87,13 +87,7 @@ extern DATA data;
 void __attribute__ ((constructor)) libinit_00CORE()
 {
 	init_00CORE();
-
-	if(data.progStatus>0)
-	{
-		printf("  Found unloaded shared object in ./libs/ -> LOADING module %s\n", __FILE__);
-		fflush(stdout);
-	}
-
+	RegisterModule(__FILE__, "milk", "Core functions");
 }
 
 
@@ -101,11 +95,6 @@ void __attribute__ ((constructor)) libinit_00CORE()
 
 int init_00CORE()
 {
-	strcpy(data.module[data.NBmodule].name,__FILE__);
-	strcpy(data.module[data.NBmodule].package, "milk");
-    strcpy(data.module[data.NBmodule].info,"Core functions");
-    data.NBmodule++;
-
 	
     return 0;
 }
