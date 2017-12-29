@@ -69,7 +69,7 @@ int clock_gettime(int clk_id, struct mach_timespec *t) {
 
 extern DATA data;
 
-
+static int INITSTATUS_00CORE = 0;
 
 
 
@@ -86,8 +86,12 @@ extern DATA data;
 
 void __attribute__ ((constructor)) libinit_00CORE()
 {
-	init_00CORE();
-	RegisterModule(__FILE__, "milk", "Core functions");
+	if(INITSTATUS_00CORE == 0)
+	{
+		init_00CORE();
+		RegisterModule(__FILE__, "milk", "Core functions");
+		INITSTATUS_00CORE = 1;	
+	}
 }
 
 
@@ -95,7 +99,6 @@ void __attribute__ ((constructor)) libinit_00CORE()
 
 int init_00CORE()
 {
-	
     return 0;
 }
 

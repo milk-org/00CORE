@@ -19,6 +19,9 @@
 /** @name INITIALIZATION
  * Module initialization functions
  */
+
+void __attribute__ ((constructor)) libinit_00CORE();
+ 
 int init_00CORE();
 
 
