@@ -87,7 +87,13 @@ extern DATA data;
 void __attribute__ ((constructor)) libinit_00CORE()
 {
 	init_00CORE();
-//	printf(" ...... Loading module %s\n", __FILE__);
+
+	if(data.progStatus>0)
+	{
+		printf("  Found unloaded shared object in ./libs/ -> LOADING module %s\n", __FILE__);
+		fflush(stdout);
+	}
+
 }
 
 
