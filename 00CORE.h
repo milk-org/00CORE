@@ -40,7 +40,7 @@ int printWARNING(const char *file, const char *func, int line, char *warnmessage
 int printERROR(const char *file, const char *func, int line, char *errmessage);
 
 /** @brief Log function call to file */
-static void CORE_logFunctionCall(const int funclevel, const int loglevel, const int logfuncMODE, const char *FileName, const char *FunctionName, const long line, char *comments);
+void CORE_logFunctionCall(const int funclevel, const int loglevel, const int logfuncMODE, const char *FileName, const char *FunctionName, const long line, char *comments);
 
 
 /* =========================================================*/
