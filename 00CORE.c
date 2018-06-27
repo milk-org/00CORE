@@ -335,7 +335,7 @@ void CORE_logFunctionCall(const int funclevel, const int loglevel, const int log
 	//TEST
 	printf("FunctionName = %s\n");
 	printf("lone         = %ls\n");
-
+	fflush(stdout); //TEST
     if(funclevel <= loglevel)
     {
 		char fname[200];
