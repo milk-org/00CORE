@@ -268,13 +268,13 @@ int printERROR(const char *file, const char *func, int line, char *errmessage)
  * At the beginning of each function, insert this code:
  * @code
  * #ifdef TEST
- * CORE_logFunctionCall( logfunc_level, logfunc_level_max, 1, __FILE__, __FUNCTION__, __LINE__, "");
+ * CORE_logFunctionCall( logfunc_level, logfunc_level_max, 1, __FILE__, __func__, __LINE__, "");
  * #endif
  * @endcode
  * and at the end of each function:
  * @code
  * #ifdef TEST
- * CORE_logFunctionCall( logfunc_level, logfunc_level_max, 1, __FILE__, __FUNCTION__, __LINE__, "");
+ * CORE_logFunctionCall( logfunc_level, logfunc_level_max, 1, __FILE__, __func__, __LINE__, "");
  * #endif
  * @endcode
  * 
