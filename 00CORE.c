@@ -332,17 +332,13 @@ void CORE_logFunctionCall(const int funclevel, const int loglevel, const int log
     else
 		modechar = '?';
 	
-	//TEST
-	printf("FunctionName = %s\n");
-	printf("lone         = %ls\n");
-	fflush(stdout); //TEST
     if(funclevel <= loglevel)
     {
-		char fname[200];
+		char fname[500];
         FILE *fp;
         
         		
-		sprintf(fname, ".%s.funccalls.log", FileName);
+		sprintf(fname, ".%s.funccalls.log", FunctionName);
 		
         struct tm *uttime;
         tnow = time(NULL);
@@ -353,10 +349,13 @@ void CORE_logFunctionCall(const int funclevel, const int loglevel, const int log
         // add custom parameter into string (optional)
 
         fp = fopen(fname, "a");
-        fprintf(fp, "%02d:%02d:%02ld.%09ld  %10d  %10d  %3d  %c %40s %6ld   %s\n", uttime->tm_hour, uttime->tm_min, timenow.tv_sec % 60, timenow.tv_nsec, getpid(), (int) tid, modechar, funclevel, FunctionName, line, comments);
+        fprintf(fp, "%02d:%02d:%02ld.%09ld  %10d  %10d  %c %40s %6ld   %s\n", 
+			uttime->tm_hour, uttime->tm_min, timenow.tv_sec % 60, timenow.tv_nsec, 
+			getpid(), (int) tid, 
+			modechar, FunctionName, line, comments);
         fclose(fp);
     }
-	exit(0);//TEST
+
 
 }
 
