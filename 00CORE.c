@@ -326,10 +326,15 @@ void CORE_logFunctionCall(const int funclevel, const int loglevel, const int log
     if(logfuncMODE==0) {
         modechar = '>';
     }
-
-    if(logfuncMODE==1) {
+    else if(logfuncMODE==1) {
         modechar = '<';
     }
+    else
+		modechar = '?';
+	
+	//TEST
+	printf("FunctionName = %s\n");
+	printf("lone         = %ls\n");
 
     if(funclevel <= loglevel)
     {
@@ -351,7 +356,7 @@ void CORE_logFunctionCall(const int funclevel, const int loglevel, const int log
         fprintf(fp, "%02d:%02d:%02ld.%09ld  %10d  %10d  %3d  %c %40s %6ld   %s\n", uttime->tm_hour, uttime->tm_min, timenow.tv_sec % 60, timenow.tv_nsec, getpid(), (int) tid, modechar, funclevel, FunctionName, line, comments);
         fclose(fp);
     }
-
+	exit(0);//TEST
 
 }
 
