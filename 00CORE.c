@@ -2,10 +2,7 @@
  * @file    00CORE.c
  * @brief   core functions
  * 
- * Functions frequently used by modules
- *
- * @author  O. Guyon
- * @date    Aug 2, 2017
+ * Useful functions frequently used by modules
  *
  * @bug No known bugs.
  *
