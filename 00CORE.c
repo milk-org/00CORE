@@ -158,19 +158,24 @@ int printRED(char *string)
  * 			warning message to be printed
  * 
  */ 
-int printWARNING(const char *file, const char *func, int line, char *warnmessage)
+int printWARNING(
+    const char *file,
+    const char *func,
+    int line,
+    char *warnmessage
+)
 {
-	
-/* Color codes for printf
-	30	Black
-	31	Red
-	32	Green
-	33	Yellow
-	34	Blue
-	35	Magenta
-	36	Cyan
-	37	White
-*/	
+
+    /* Color codes for printf
+    	30	Black
+    	31	Red
+    	32	Green
+    	33	Yellow
+    	34	Blue
+    	35	Magenta
+    	36	Cyan
+    	37	White
+    */
     fprintf(stderr,"%c[%d;%dm WARNING [ FILE: %s   FUNCTION: %s  LINE: %d ]  %c[%d;m\n", (char) 27, 1, 35, file, func, line, (char) 27, 0);
     if(C_ERRNO != 0)
     {
@@ -218,7 +223,12 @@ int printWARNING(const char *file, const char *func, int line, char *warnmessage
  * 			error message to be printed
  *  
  */ 
-int printERROR(const char *file, const char *func, int line, char *errmessage)
+int printERROR(
+    const char *file,
+    const char *func,
+    int line,
+    char *errmessage
+)
 {
     fprintf(stderr, "%c[%d;%dm ERROR [ %s:%d: %s ]  %c[%d;m\n", (char) 27, 1, 31, file, line, func, (char) 27, 0);
     if(C_ERRNO != 0)
@@ -412,8 +422,9 @@ int set_precision(int vp)
 
 int CLIinfoPrint()
 {
-    printf("Process ID   : %d\n",CLIPID);
-    printf("%s BUILT     : %s %s\n", BuildFile, BuildDate, BuildTime);
+    printf("Process ID   : %d\n", CLIPID);
+    printf("CONFIGDIR = %s\n", data.configdir);
+    printf("SOURCEDIR = %s\n", data.sourcedir);
     printf("Memory usage      : %ld Mb  (%ld images)\n",
            ((long) (compute_image_memory(data)/1024/1024)),
            compute_nb_image(data)  );
