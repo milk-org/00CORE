@@ -2,8 +2,6 @@
  * @file    00CORE.h
  * @brief   Function prototypes for module 00CORE
  * 
- *  
- * @author  O. Guyon
  * 
  */
 
