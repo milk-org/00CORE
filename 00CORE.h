@@ -4,10 +4,6 @@
  * 
  *  
  * @author  O. Guyon
- * @date    Aug 4 2017
- *
- * 
- * @bug No known bugs.
  * 
  */
 
@@ -34,13 +30,31 @@ int init_00CORE();
 int printRED(char *string);
 
 /** @brief Print warning and continue */
-int printWARNING(const char *file, const char *func, int line, char *warnmessage);
+errno_t printWARNING(
+    const char *restrict file,
+    const char *restrict func,
+    int                  line,
+    const char *restrict warnmessage
+);
 
 /** @brief Print error (in red) and continue */
-int printERROR(const char *file, const char *func, int line, char *errmessage);
+errno_t printERROR(
+    const char *restrict file,
+    const char *restrict func,
+    int                  line,
+    const char *restrict errmessage
+);
 
 /** @brief Log function call to file */
-void CORE_logFunctionCall(const int funclevel, const int loglevel, const int logfuncMODE, const char *FileName, const char *FunctionName, const long line, char *comments);
+void CORE_logFunctionCall(
+    const int funclevel,
+    const int loglevel,
+    const int logfuncMODE,
+    const char *FileName,
+    const char *FunctionName,
+    const long line,
+    char *comments
+);
 
 
 /* =========================================================*/
@@ -56,8 +70,14 @@ int CLIWritePid();
 /** @name 00CORE - 3. TIME UTILITIES */
 /* =========================================================*/
 
-struct timespec timespec_diff(struct timespec start, struct timespec end);
+struct timespec timespec_diff(
+    struct timespec start,
+    struct timespec end
+);
 
-double timespec_diff_double(struct timespec start, struct timespec end);
+double timespec_diff_double(
+    struct timespec start,
+    struct timespec end
+);
 
 #endif

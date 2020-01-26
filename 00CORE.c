@@ -8,7 +8,6 @@
  *
  */
 
-
 /* =============================================================================================== */
 /* =============================================================================================== */
 /*                                        HEADER FILES                                             */
@@ -136,33 +135,33 @@ int printRED(char *string)
 
 /**
  * ## Purpose
- * 
+ *
  * Print warning string
- * 
+ *
  * ## Arguments
- * 
+ *
  * @param[in]
  * file		CHAR*
  * 			file name from which warning is issued
- * 
+ *
  * @param[in]
  * func		CHAR*
  * 			function name from which warning is issued
- * 
+ *
  * @param[in]
  * line		int
  * 			line number from which warning is issued
- * 
+ *
  * @param[in]
  * warnmessage		CHAR*
  * 			warning message to be printed
- * 
- */ 
-int printWARNING(
-    const char *file,
-    const char *func,
-    int line,
-    char *warnmessage
+ *
+ */
+errno_t printWARNING(
+    const char *restrict file,
+    const char *restrict func,
+    int                  line,
+    const char *restrict warnmessage
 )
 {
 
@@ -176,7 +175,9 @@ int printWARNING(
     	36	Cyan
     	37	White
     */
-    fprintf(stderr,"%c[%d;%dm WARNING [ FILE: %s   FUNCTION: %s  LINE: %d ]  %c[%d;m\n", (char) 27, 1, 35, file, func, line, (char) 27, 0);
+    fprintf(stderr,
+            "%c[%d;%dm WARNING [ FILE: %s   FUNCTION: %s  LINE: %d ]  %c[%d;m\n",
+            (char) 27, 1, 35, file, func, line, (char) 27, 0);
     if(C_ERRNO != 0)
     {
         char buff[256];
@@ -189,10 +190,12 @@ int printWARNING(
     else
         fprintf(stderr,"No C error (errno = 0)\n");
 
-    fprintf(stderr,"%c[%d;%dm %s  %c[%d;m\n", (char) 27, 1, 35, warnmessage, (char) 27, 0);
+    fprintf(stderr,
+            "%c[%d;%dm %s  %c[%d;m\n",
+            (char) 27, 1, 35, warnmessage, (char) 27, 0);
     C_ERRNO = 0;
 
-    return(0);
+    return RETURN_SUCCESS;
 }
 
 
@@ -223,11 +226,11 @@ int printWARNING(
  * 			error message to be printed
  *  
  */ 
-int printERROR(
-    const char *file,
-    const char *func,
-    int line,
-    char *errmessage
+errno_t printERROR(
+    const char *restrict file,
+    const char *restrict func,
+    int                  line,
+    const char *restrict errmessage
 )
 {
     fprintf(stderr, "%c[%d;%dm ERROR [ %s:%d: %s ]  %c[%d;m\n", (char) 27, 1, 31, file, line, func, (char) 27, 0);
@@ -247,7 +250,7 @@ int printERROR(
 
     C_ERRNO = 0;
 
-    return(0);
+    return RETURN_SUCCESS;
 }
 
 
@@ -321,7 +324,15 @@ int printERROR(
  * @warning May slow down code. Only use for debugging. Output file may grow very quickly.
  */
 
-void CORE_logFunctionCall(const int funclevel, const int loglevel, const int logfuncMODE, const char *FileName, const char *FunctionName, const long line, char *comments)
+void CORE_logFunctionCall(
+    const int   funclevel,
+    const int   loglevel,
+    const int   logfuncMODE,
+    __attribute__((unused)) const char *FileName,
+    const char *FunctionName,
+    const long  line,
+    char       *comments
+)
 {
     time_t tnow;
     struct timespec timenow;
@@ -337,16 +348,16 @@ void CORE_logFunctionCall(const int funclevel, const int loglevel, const int log
         modechar = '<';
     }
     else
-		modechar = '?';
-	
+        modechar = '?';
+
     if(funclevel <= loglevel)
     {
-		char fname[500];
+        char  fname[500];
         FILE *fp;
-        
-        		
-		sprintf(fname, ".%s.funccalls.log", FunctionName);
-		
+
+
+        sprintf(fname, ".%s.funccalls.log", FunctionName);
+
         struct tm *uttime;
         tnow = time(NULL);
         uttime = gmtime(&tnow);
@@ -356,17 +367,15 @@ void CORE_logFunctionCall(const int funclevel, const int loglevel, const int log
         // add custom parameter into string (optional)
 
         fp = fopen(fname, "a");
-        fprintf(fp, "%02d:%02d:%02ld.%09ld  %10d  %10d  %c %40s %6ld   %s\n", 
-			uttime->tm_hour, uttime->tm_min, timenow.tv_sec % 60, timenow.tv_nsec, 
-			getpid(), (int) tid, 
-			modechar, FunctionName, line, comments);
+        fprintf(fp, "%02d:%02d:%02ld.%09ld  %10d  %10d  %c %40s %6ld   %s\n",
+                uttime->tm_hour, uttime->tm_min, timenow.tv_sec % 60, timenow.tv_nsec,
+                getpid(), (int) tid,
+                modechar, FunctionName, line, comments);
         fclose(fp);
     }
 
 
 }
-
-
 
 
 
