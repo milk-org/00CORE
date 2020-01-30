@@ -325,13 +325,13 @@ errno_t printERROR(
  */
 
 void CORE_logFunctionCall(
-    const int   funclevel,
-    const int   loglevel,
-    const int   logfuncMODE,
-    __attribute__((unused)) const char *FileName,
+    const int funclevel,
+    const int loglevel,
+    const int logfuncMODE,
+    __attribute__ ((unused)) const char *FileName,
     const char *FunctionName,
-    const long  line,
-    char       *comments
+    const long line,
+    char *comments
 )
 {
     time_t tnow;
@@ -353,6 +353,7 @@ void CORE_logFunctionCall(
     if(funclevel <= loglevel)
     {
         char  fname[500];
+
         FILE *fp;
 
 
