@@ -156,16 +156,8 @@ int printRED(char *string)
  * warnmessage		CHAR*
  * 			warning message to be printed
  *
- */
-errno_t printWARNING(
-    const char *restrict file,
-    const char *restrict func,
-    int                  line,
-    const char *restrict warnmessage
-)
-{
-
-    /* Color codes for printf
+ * 
+ *  Color codes for printf
     	30	Black
     	31	Red
     	32	Green
@@ -174,7 +166,16 @@ errno_t printWARNING(
     	35	Magenta
     	36	Cyan
     	37	White
-    */
+    
+ */
+
+ errno_t printWARNING(
+    const char *restrict file,
+    const char *restrict func,
+    int                  line,
+    const char *restrict warnmessage
+)
+{
     fprintf(stderr,
             "%c[%d;%dm WARNING [ FILE: %s   FUNCTION: %s  LINE: %d ]  %c[%d;m\n",
             (char) 27, 1, 35, file, func, line, (char) 27, 0);
@@ -226,7 +227,8 @@ errno_t printWARNING(
  * 			error message to be printed
  *  
  */ 
-errno_t printERROR(
+
+ errno_t printERROR(
     const char *restrict file,
     const char *restrict func,
     int                  line,
