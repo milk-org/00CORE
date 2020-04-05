@@ -4,9 +4,36 @@
  * 
  * Useful functions frequently used by modules
  *
- * @bug No known bugs.
  *
  */
+
+
+
+/* ================================================================== */
+/* ================================================================== */
+/*            MODULE INFO                                             */
+/* ================================================================== */
+/* ================================================================== */
+
+#define MODULE_NAME              "00CORE"
+
+// module default short name
+// all CLI calls to this module functions will be <shortname>.<funcname>
+// if set to "", then calls use <funcname>
+#define MODULE_SHORTNAME_DEFAULT ""
+
+// Module short description 
+#define MODULE_DESCRIPTION       "Core functions"
+
+// Application to which module belongs
+#define MODULE_APPLICATION       "milk"
+
+
+
+
+
+
+
 
 /* =============================================================================================== */
 /* =============================================================================================== */
@@ -80,6 +107,13 @@ static int INITSTATUS_00CORE = 0;
 /** @name Module initialization */
 
 
+
+// Module initialization macro in CLIcore.h
+//
+INIT_MODULE_LIB();
+
+
+/*
 void __attribute__ ((constructor)) libinit_00CORE()
 {
 	if(INITSTATUS_00CORE == 0)
@@ -98,7 +132,7 @@ int init_00CORE()
     return 0;
 }
 
-
+*/
 
 
 
