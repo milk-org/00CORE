@@ -1,8 +1,8 @@
 /**
  * @file    00CORE.h
  * @brief   Function prototypes for module 00CORE
- * 
- * 
+ *
+ *
  */
 
 #ifndef _00CORE_H
@@ -14,7 +14,7 @@
  * Module initialization functions
  */
 
-void __attribute__ ((constructor)) libinit_00CORE();
+void __attribute__((constructor)) libinit_00CORE();
 
 
 
