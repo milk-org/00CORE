@@ -15,8 +15,6 @@
 /* ================================================================== */
 /* ================================================================== */
 
-#define MODULE_NAME              "00CORE"
-
 // module default short name
 // all CLI calls to this module functions will be <shortname>.<funcname>
 // if set to "", then calls use <funcname>
@@ -86,17 +84,18 @@ int clock_gettime(int clk_id, struct mach_timespec *t)
 
 
 
-/* =============================================================================================== */
-/* =============================================================================================== */
-/*                                  GLOBAL DATA DECLARATION                                        */
-/* =============================================================================================== */
-/* =============================================================================================== */
 
 
-//extern DATA data;
+/* ================================================================== */
+/* ================================================================== */
+/*            INITIALIZE LIBRARY                                      */
+/* ================================================================== */
+/* ================================================================== */
 
-static int INITSTATUS_00CORE = 0;
-
+// Module initialization macro in CLIcore.h
+// macro argument defines module name for bindings
+//
+INIT_MODULE_LIB(00CORE)
 
 
 
@@ -115,17 +114,7 @@ static errno_t init_module_CLI()
     return RETURN_SUCCESS;
 }
 
-// for external use
-// may perform additional initialization
-errno_t init_00CORE()
-{
-    return init_module_CLI();
-}
 
-
-// Module initialization macro in CLIcore.h
-//
-INIT_MODULE_LIB();
 
 
 
